@@ -22,6 +22,11 @@ import platform
 import struct
 import statistics
 
+# # For testing
+# import sys
+# import os
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 from bmslib import FuturesPool
 from bmslib.bms import BmsSample
 from bmslib.bt import BtBms
@@ -76,7 +81,7 @@ def _sok_command(command: int):
     data = [0xee, command, 0x00, 0x00, 0x00]
     data2 = data + [minicrc(data)]
     logging.debug(f'SOK: Formatting command [{data2}]')
-    return bytes([0xEE, command, 0x00, 0x00, 0x00])
+    return bytes(data2)
 
 
 class SokBt(BtBms):
